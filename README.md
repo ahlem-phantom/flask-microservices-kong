@@ -72,6 +72,22 @@ _In order to install the app you need to follow the instructions below :_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Demo
+To get started, I want to get my bookings so all I have to do is to type  **localhost:80/bookings/bookings**. Kong service will check if the bookings microservice exists and then will get the bookings from the **bookings microservice**.
+<div align="left">
+  <h1>
+<img src="https://user-images.githubusercontent.com/78981558/190874075-c32a5c09-3de2-41ca-a96e-6ace8240ce99.png" width="700" height="100">
+</h1>
+</div>
+
+**Display:**
+<div align="left">
+  <h1>
+<img src="https://user-images.githubusercontent.com/78981558/190874055-51072df5-8ef5-4038-81b4-dc58dbf24469.png" width="700" height="500">
+</h1>
+</div>
+
+
 
 
 <!-- ACKNOWLEDGMENTS -->
