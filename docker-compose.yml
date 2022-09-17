@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  bookings:
+    build:
+      context: ./bookings
+      dockerfile: Dockerfile
+    ports: 
+      - 5003:5003
+    networks:
+      - kong_bookings
+
+  users:
+    build:
+      context: ./users
+      dockerfile: Dockerfile
+    ports: 
+      - 5000:5000
+    networks:
+      - kong_users
+
+  movies:
+    build:
+      context: ./movies
+      dockerfile: Dockerfile
+    ports: 
+      - 5001:5001
+    networks:
+      - kong_movies
+
+  showtimes:
+    build:
+      context: ./showtimes
+      dockerfile: Dockerfile
+    ports: 
+      - 5002:5002
+    networks:
+      - kong_showtimes
+
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 80:8000
+      - 443:8443
+    networks:
+      - kong_bookings
+      - kong_users
+      - kong_movies
+      - kong_showtimes
+ 
+networks:
+  kong_bookings:
+  kong_users:
+  kong_movies:
+  kong_showtimes:

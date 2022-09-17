@@ -1,0 +1,63 @@
+_format_version: "2.1"
+
+services:
+
+  - name: kong_bookings
+    url: http://bookings:5003
+    routes:
+      - name: bookings
+        paths:
+          - /bookings
+
+  - name: kong_users
+    url: http://users:5000
+    routes:
+      - name: users
+        paths:
+          - /users
+        methods:
+          - GET
+          - POST
+
+  - name: kong_movies
+    url: http://movies:5001
+    routes:
+      - name: movies
+        paths:
+          - /movies
+        methods:
+          - GET
+          - POST
+
+  - name: kong_showtimes
+    url: http://showtimes:5002
+    routes:
+      - name: showtimes
+        paths:
+          - /showtimes
+        methods:
+          - GET
+          - POST
+
+
+plugins:
+- name: cors
+  config: 
+    origins:
+    - "*"
+    methods:
+    - GET
+    - POST
+    headers:
+    - Accept
+    - Accept-Version
+    - Authorization
+    - Content-Length
+    - Content-MD5
+    - Content-Type
+    - Date
+    - X-Auth-Token
+    exposed_headers:
+    - X-Auth-Token
+    credentials: true
+    max_age: 3600
