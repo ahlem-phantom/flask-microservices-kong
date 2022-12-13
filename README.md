@@ -66,7 +66,7 @@ _In order to install the app you need to follow the instructions below :_
    docker-compose up 
    ```
 
-4. Open localhost:80 in the browser and that's it you can use microservices 🎉!
+4. Open localhost:8000 in the browser and that's it you can use microservices 🎉!
 
  
 
